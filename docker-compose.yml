@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    image: click
+    container_name: click_con
+    restart: always
+    command:
+          'sh -c "python manage.py collectstatic --noinput &&
+                 python manage.py migrate &&
+                 python manage.py runserver 0.0.0.0:8003"'
+    ports:
+      - '8003:8003'
+    depends_on:
+      - db
+
+  bot:
+    build: .
+    image: click_bot
+    container_name: click_bot_con
+    restart: always
+    command: python bot/main.py
+
+  db:
+    image: postgres:alpine
+    container_name: pg3
+    ports:
+      - '5436:5432'
+    environment:
+      POSTGRES_PASSWORD: 1
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    restart: always
+
+
+volumes:
+  pg_data:

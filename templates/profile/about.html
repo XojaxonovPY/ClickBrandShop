@@ -1,0 +1,124 @@
+{% extends 'profile/main.html' %}
+{% load i18n %}
+{% block profile %}
+    <style>
+        .about-box {
+            background: #fff;
+            border-radius: 6px;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+            padding: 20px;
+            margin: 15px 0;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 14px;
+        }
+
+        .about-box h1 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+        }
+
+        .about-box h1 i {
+            color: #27ae60;
+            margin-right: 8px;
+        }
+
+        .about-box h3 {
+            font-size: 16px;
+            color: #27ae60;
+            margin-bottom: 6px;
+        }
+
+        .about-box p, .about-box li {
+            font-size: 14px;
+            color: #444;
+            line-height: 1.5;
+        }
+
+        .about-box ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 10px;
+        }
+
+        .about-box .hours-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 3px 0;
+            border-bottom: 1px dashed #eee;
+        }
+
+        .about-box .closed {
+            color: red;
+            font-weight: 500;
+        }
+
+        .about-box .social-icons i {
+            font-size: 18px;
+            margin-right: 10px;
+            color: #555;
+            transition: 0.2s;
+        }
+
+        .about-box .social-icons i:hover {
+            color: #27ae60;
+        }
+
+        @media (max-width: 768px) {
+            .about-box h1 {
+                font-size: 18px;
+            }
+
+            .about-box h3 {
+                font-size: 15px;
+            }
+
+            .about-box {
+                padding: 15px;
+            }
+        }
+    </style>
+
+    <div class="about-box">
+        <h1><i class="fas fa-info-circle"></i>{% trans "Biz haqimizda" %}</h1>
+
+        <div class="mb-3">
+            <h3 style="text-align: center;">{% trans "ClickBrandShop" %}</h3>
+            <p>{{ settings.description }}</p>
+        </div>
+
+        <div class="mb-3">
+            <h3 style="text-align: center;">Ish vaqti</h3>
+            <ul class="hours-list">
+                {% for setting in settings.work_time %}
+                    <li><span>{{ setting.day }}:</span><span>{{ setting.from }}{% if setting.to %} -
+                        {{ setting.to }}{% endif %}</span></li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="mb-3">
+            <h3>{% trans "Filiallar" %}</h3>
+            <p><i class="fas fa-map-marker-alt me-1"></i>{{ settings.address }}</p>
+        </div>
+
+        <div class="mb-3">
+            <h3>{% trans "Aloqa" %} </h3>
+            <p>
+                <i class="fas fa-phone-alt me-1"></i>{{ settings.phone_number }}<br>
+            </p>
+        </div>
+
+        <div class="mb-2">
+            <h3>{% trans "Ijtimoiy tarmoqlar" %}</h3>
+            <div class="social-icons">
+                <a href="https://www.instagram.com/clickbrandshop/"><i class="fab fa-instagram"></i></a>
+                <a href="https://t.me/clickmarket_uz"><i class="fab fa-telegram-plane"></i></a>
+                <a href="https://www.facebook.com/clickmarket.uz"><i class="fab fa-facebook"></i></a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

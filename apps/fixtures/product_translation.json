@@ -1,0 +1,322 @@
+[
+  {
+    "model": "apps.productstranslation",
+    "pk": 1,
+    "fields": {
+      "language_code": "uz",
+      "name": "Fudbolka",
+      "description": "Juda ham yaxshi fudbolka",
+      "master": 1
+    }
+  },
+  {
+    "model": "apps.productstranslation",
+    "pk": 2,
+    "fields": {
+      "language_code": "ru",
+      "name": "��������",
+      "description": "����� ������� ������a",
+      "master": 1
+    }
+  },
+  {
+    "model": "apps.productstranslation",
+    "pk": 3,
+    "fields": {
+      "language_code": "uz",
+      "name": "Bolalar kiyimi",
+      "description": "Bolalar kiyimi 6-7 yoshgacha bolalar uchun",
+      "master": 2
+    }
+  },
+  {
+    "model": "apps.productstranslation",
+    "pk": 4,
+    "fields": {
+      "language_code": "ru",
+      "name": "������� ������",
+      "description": "������� ������ ��� ����� �� 6-7 ���",
+      "master": 2
+    }
+  },
+  {
+    "model": "apps.productstranslation",
+    "pk": 5,
+    "fields": {
+      "language_code": "uz",
+      "name": "Bilak uzuk",
+      "description": "Bilak uzuk arzon narxlarda juda kam sonli",
+      "master": 3
+    }
+  },
+  {
+    "model": "apps.productstranslation",
+    "pk": 6,
+    "fields": {
+      "language_code": "ru",
+      "name": "������ �� ��������",
+      "description": "������ �� �������� ����������� ����� ����� � �� ������ �����.",
+      "master": 3
+    }
+  },
+  {
+    "model": "apps.productstranslation",
+    "pk": 7,
+    "fields": {
+      "language_code": "uz",
+      "name": "Ko'ylak",
+      "description": "Ko'ylak cheklangan nashr.",
+      "master": 4
+    }
+  },
+  {
+    "model": "apps.productstranslation",
+    "pk": 8,
+    "fields": {
+      "language_code": "ru",
+      "name": "�������",
+      "description": "������� �������� ������������ �������.",
+      "master": 4
+    }
+  },
+  {
+    "model": "apps.productstranslation",
+    "pk": 9,
+    "fields": {
+      "language_code": "uz",
+      "name": "Fudbolka",
+      "description": "Juda ham yaxshi fudbolka",
+      "master": 5
+    }
+  },
+  {
+    "model": "apps.productstranslation",
+    "pk": 10,
+    "fields": {
+      "language_code": "uz",
+      "name": "Fudbolka",
+      "description": "Juda ham yaxshi fudbolka",
+      "master": 6
+    }
+  },
+  {
+    "model": "apps.productstranslation",
+    "pk": 11,
+    "fields": {
+      "language_code": "uz",
+      "name": "Fudbolka",
+      "description": "Juda ham yaxshi fudbolka",
+      "master": 7
+    }
+  },
+  {
+    "model": "apps.productstranslation",
+    "pk": 12,
+    "fields": {
+      "language_code": "ru",
+      "name": "��������",
+      "description": "����� ������� ������a",
+      "master": 5
+    }
+  },
+  {
+    "model": "apps.productstranslation",
+    "pk": 13,
+    "fields": {
+      "language_code": "ru",
+      "name": "��������",
+      "description": "����� ������� ������a",
+      "master": 6
+    }
+  },
+  {
+    "model": "apps.productstranslation",
+    "pk": 14,
+    "fields": {
+      "language_code": "ru",
+      "name": "��������",
+      "description": "����� ������� ������a",
+      "master": 7
+    }
+  },
+  {
+    "model": "apps.productstranslation",
+    "pk": 15,
+    "fields": {
+      "language_code": "uz",
+      "name": "Bolalar kiyimi",
+      "description": "Bolalar kiyimi 6-7 yoshgacha bolalar uchun",
+      "master": 8
+    }
+  },
+  {
+    "model": "apps.productstranslation",
+    "pk": 16,
+    "fields": {
+      "language_code": "uz",
+      "name": "Bolalar kiyimi",
+      "description": "Bolalar kiyimi 6-7 yoshgacha bolalar uchun",
+      "master": 9
+    }
+  },
+  {
+    "model": "apps.productstranslation",
+    "pk": 17,
+    "fields": {
+      "language_code": "uz",
+      "name": "Bolalar kiyimi",
+      "description": "Bolalar kiyimi 6-7 yoshgacha bolalar uchun",
+      "master": 10
+    }
+  },
+  {
+    "model": "apps.productstranslation",
+    "pk": 18,
+    "fields": {
+      "language_code": "ru",
+      "name": "������� ������",
+      "description": "������� ������ ��� ����� �� 6-7 ���",
+      "master": 8
+    }
+  },
+  {
+    "model": "apps.productstranslation",
+    "pk": 19,
+    "fields": {
+      "language_code": "ru",
+      "name": "������� ������",
+      "description": "������� ������ ��� ����� �� 6-7 ���",
+      "master": 9
+    }
+  },
+  {
+    "model": "apps.productstranslation",
+    "pk": 20,
+    "fields": {
+      "language_code": "ru",
+      "name": "������� ������",
+      "description": "������� ������ ��� ����� �� 6-7 ���",
+      "master": 10
+    }
+  },
+  {
+    "model": "apps.productstranslation",
+    "pk": 21,
+    "fields": {
+      "language_code": "uz",
+      "name": "Bilak uzuk",
+      "description": "Bilak uzuk arzon narxlarda juda kam sonli",
+      "master": 11
+    }
+  },
+  {
+    "model": "apps.productstranslation",
+    "pk": 22,
+    "fields": {
+      "language_code": "uz",
+      "name": "Bilak uzuk",
+      "description": "Bilak uzuk arzon narxlarda juda kam sonli",
+      "master": 12
+    }
+  },
+  {
+    "model": "apps.productstranslation",
+    "pk": 23,
+    "fields": {
+      "language_code": "uz",
+      "name": "Bilak uzuk",
+      "description": "Bilak uzuk arzon narxlarda juda kam sonli",
+      "master": 13
+    }
+  },
+  {
+    "model": "apps.productstranslation",
+    "pk": 24,
+    "fields": {
+      "language_code": "ru",
+      "name": "������ �� ��������",
+      "description": "������ �� �������� ����������� ����� ����� � �� ������ �����.",
+      "master": 11
+    }
+  },
+  {
+    "model": "apps.productstranslation",
+    "pk": 25,
+    "fields": {
+      "language_code": "ru",
+      "name": "������ �� ��������",
+      "description": "������ �� �������� ����������� ����� ����� � �� ������ �����.",
+      "master": 12
+    }
+  },
+  {
+    "model": "apps.productstranslation",
+    "pk": 26,
+    "fields": {
+      "language_code": "ru",
+      "name": "������ �� ��������",
+      "description": "������ �� �������� ����������� ����� ����� � �� ������ �����.",
+      "master": 13
+    }
+  },
+  {
+    "model": "apps.productstranslation",
+    "pk": 27,
+    "fields": {
+      "language_code": "ru",
+      "name": "�������",
+      "description": "������� �������� ������������ �������.",
+      "master": 14
+    }
+  },
+  {
+    "model": "apps.productstranslation",
+    "pk": 28,
+    "fields": {
+      "language_code": "ru",
+      "name": "�������",
+      "description": "������� �������� ������������ �������.",
+      "master": 15
+    }
+  },
+  {
+    "model": "apps.productstranslation",
+    "pk": 29,
+    "fields": {
+      "language_code": "ru",
+      "name": "�������",
+      "description": "������� �������� ������������ �������.",
+      "master": 16
+    }
+  },
+  {
+    "model": "apps.productstranslation",
+    "pk": 30,
+    "fields": {
+      "language_code": "uz",
+      "name": "Ko'ylak",
+      "description": "Ko'ylak cheklangan nashr.",
+      "master": 14
+    }
+  },
+  {
+    "model": "apps.productstranslation",
+    "pk": 31,
+    "fields": {
+      "language_code": "uz",
+      "name": "Ko'ylak",
+      "description": "Ko'ylak cheklangan nashr.",
+      "master": 15
+    }
+  },
+  {
+    "model": "apps.productstranslation",
+    "pk": 32,
+    "fields": {
+      "language_code": "uz",
+      "name": "Ko'ylak",
+      "description": "Ko'ylak cheklangan nashr.",
+      "master": 16
+    }
+  }
+]

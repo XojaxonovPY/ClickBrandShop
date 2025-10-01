@@ -1,0 +1,226 @@
+{% extends 'profile/main.html' %}
+{% load i18n %}
+{% block profile %}
+    <style>
+        .wishlist-container {
+            padding: 30px 20px;
+        }
+
+        .wishlist-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .wishlist-header h2 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+
+        .product-card {
+            border: 1px solid #eaeaea;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: box-shadow 0.3s ease, transform 0.2s ease;
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            height: 100%;
+        }
+
+        .product-card:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+            transform: translateY(-4px);
+        }
+
+        .product-image-wrapper {
+            position: relative;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .wishlist-button {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 18px;
+            width: 38px;
+            height: 38px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .wishlist-button i {
+            color: #888;
+            transition: color 0.2s ease;
+        }
+
+        .wishlist-button.active i {
+            color: #e74c3c;
+        }
+
+        .card-body {
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-title {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .card-text {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 12px;
+        }
+
+        .price {
+            font-size: 16px;
+            color: #27ae60;
+            font-weight: 600;
+        }
+
+        .old-price {
+            font-size: 13px;
+            color: #999;
+            text-decoration: line-through;
+            margin-left: 8px;
+        }
+
+        .btn-primary {
+            background-color: #27ae60;
+            border: none;
+            margin-top: auto;
+            font-size: 14px;
+        }
+
+        .btn-primary:hover {
+            background-color: #1e874d;
+        }
+
+        @media (max-width: 768px) {
+            .product-image {
+                height: 160px;
+            }
+
+            .card-title {
+                font-size: 16px;
+            }
+        }
+    </style>
+
+    <div class="wishlist-container">
+        <div class="wishlist-header">
+            <h2>{% trans "Sevimlilar Ro'yxati" %}</h2>
+        </div>
+        <div class="row">
+            {% for wishlist in products %}
+                <div class="col-md-4 mb-4">
+                    <div class="product-card">
+                        <div class="product-image-wrapper">
+                            <img src="{{ wishlist.product.main_image.url }}" alt="{{ wishlist.product.name }}"
+                                 class="product-image">
+                            <button type="button"
+                                    class="wishlist-button {% if wishlist.product.id in wishlist_products %} active {% endif %}"
+                                    data-product-id="{{ wishlist.product.id }}"
+                                    title="Sevimlilarga qo'shish">
+                                <i class="fa-heart {% if wishlist.product.id in wishlist_products %} fas {% else %} far {% endif %}"></i>
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ wishlist.product.name }}</h5>
+                            <p class="card-text">
+                            <span class="price">
+                                {% if wishlist.product.discount_price %}
+                                    {{ wishlist.product.discount_price }} so'm
+                                    <span class="old-price">{{ wishlist.product.price }} so'm</span>
+                                {% else %}
+                                    {{ wishlist.product.price }} so'm
+                                {% endif %}
+                            </span>
+                            </p>
+                            <a href="{% url 'product_detail' wishlist.product.pk %}" class="btn btn-sm btn-primary">Batafsil</a>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="col-12 text-center">
+                    <p class="text-muted">{% trans "Siz hali hech qanday mahsulotni sevimlilarga qo‘shmagansiz." %}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.wishlist-button').forEach(button => {
+                button.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    const productId = this.dataset.productId;
+                    const csrftoken = getCookie('csrftoken');
+                    const buttonEl = this;
+                    const icon = this.querySelector('i');
+
+                    fetch("{% url 'wishlist-save' %}", {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': csrftoken
+                        },
+                        body: JSON.stringify({product: productId})
+                    })
+                        .then(response => {
+                            if (!response.ok) throw new Error('Tarmoq xatosi');
+                            return response.json();
+                        })
+                        .then(data => {
+                            if (data.status === 'added') {
+                                buttonEl.classList.add('active');
+                                icon.classList.remove('far');
+                                icon.classList.add('fas');
+                            } else if (data.status === 'removed') {
+                                buttonEl.classList.remove('active');
+                                icon.classList.remove('fas');
+                                icon.classList.add('far');
+                            }
+                        })
+                        .catch(error => console.error('Xatolik:', error));
+                });
+            });
+
+            function getCookie(name) {
+                let cookieValue = null;
+                if (document.cookie && document.cookie !== '') {
+                    const cookies = document.cookie.split(';');
+                    for (let i = 0; i < cookies.length; i++) {
+                        const cookie = cookies[i].trim();
+                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+        });
+    </script>
+{% endblock %}

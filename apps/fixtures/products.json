@@ -1,0 +1,178 @@
+[
+  {
+    "model": "apps.products",
+    "pk": 1,
+    "fields": {
+      "price": "70000.00",
+      "quantity": 40,
+      "main_image": "products/fudbolka.jpeg",
+      "discount": 5,
+      "category": 1
+    }
+  },
+  {
+    "model": "apps.products",
+    "pk": 2,
+    "fields": {
+      "price": "60000.00",
+      "quantity": 34,
+      "main_image": "products/bolalar_kiyimi.jpg",
+      "discount": 6,
+      "category": 4
+    }
+  },
+  {
+    "model": "apps.products",
+    "pk": 3,
+    "fields": {
+      "price": "90000.00",
+      "quantity": 60,
+      "main_image": "products/bilakuziuk.jpg",
+      "discount": 10,
+      "category": 3
+    }
+  },
+  {
+    "model": "apps.products",
+    "pk": 4,
+    "fields": {
+      "price": "100000.00",
+      "quantity": 35,
+      "main_image": "products/koylak.jpg",
+      "discount": 8,
+      "category": 2
+    }
+  },
+  {
+    "model": "apps.products",
+    "pk": 5,
+    "fields": {
+      "price": "70000.00",
+      "quantity": 40,
+      "main_image": "products/fudbolka.jpeg",
+      "discount": 5,
+      "category": 1
+    }
+  },
+  {
+    "model": "apps.products",
+    "pk": 6,
+    "fields": {
+      "price": "70000.00",
+      "quantity": 40,
+      "main_image": "products/fudbolka.jpeg",
+      "discount": 5,
+      "category": 1
+    }
+  },
+  {
+    "model": "apps.products",
+    "pk": 7,
+    "fields": {
+      "price": "70000.00",
+      "quantity": 40,
+      "main_image": "products/fudbolka.jpeg",
+      "discount": 5,
+      "category": 1
+    }
+  },
+  {
+    "model": "apps.products",
+    "pk": 8,
+    "fields": {
+      "price": "60000.00",
+      "quantity": 34,
+      "main_image": "products/bolalar_kiyimi.jpg",
+      "discount": 6,
+      "category": 4
+    }
+  },
+  {
+    "model": "apps.products",
+    "pk": 9,
+    "fields": {
+      "price": "60000.00",
+      "quantity": 34,
+      "main_image": "products/bolalar_kiyimi.jpg",
+      "discount": 6,
+      "category": 4
+    }
+  },
+  {
+    "model": "apps.products",
+    "pk": 10,
+    "fields": {
+      "price": "60000.00",
+      "quantity": 34,
+      "main_image": "products/bolalar_kiyimi.jpg",
+      "discount": 6,
+      "category": 4
+    }
+  },
+  {
+    "model": "apps.products",
+    "pk": 11,
+    "fields": {
+      "price": "90000.00",
+      "quantity": 60,
+      "main_image": "products/bilakuziuk.jpg",
+      "discount": 10,
+      "category": 3
+    }
+  },
+  {
+    "model": "apps.products",
+    "pk": 12,
+    "fields": {
+      "price": "90000.00",
+      "quantity": 60,
+      "main_image": "products/bilakuziuk.jpg",
+      "discount": 10,
+      "category": 3
+    }
+  },
+  {
+    "model": "apps.products",
+    "pk": 13,
+    "fields": {
+      "price": "90000.00",
+      "quantity": 60,
+      "main_image": "products/bilakuziuk.jpg",
+      "discount": 10,
+      "category": 3
+    }
+  },
+  {
+    "model": "apps.products",
+    "pk": 14,
+    "fields": {
+      "price": "100000.00",
+      "quantity": 35,
+      "main_image": "products/koylak.jpg",
+      "discount": 8,
+      "category": 2
+    }
+  },
+  {
+    "model": "apps.products",
+    "pk": 15,
+    "fields": {
+      "price": "100000.00",
+      "quantity": 35,
+      "main_image": "products/koylak.jpg",
+      "discount": 8,
+      "category": 2
+    }
+  },
+  {
+    "model": "apps.products",
+    "pk": 16,
+    "fields": {
+      "price": "100000.00",
+      "quantity": 35,
+      "main_image": "products/koylak.jpg",
+      "discount": 8,
+      "category": 2
+    }
+  }
+]

@@ -1,0 +1,635 @@
+{% extends 'base/main.html' %}
+{% load i18n %}
+
+{% block main %}
+    <style>
+        .order-container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .order-title {
+            font-size: 24px;
+            margin-bottom: 30px;
+            color: #333;
+            text-align: center;
+        }
+
+        .order-content {
+            display: flex;
+            gap: 30px;
+        }
+
+        .order-items {
+            flex: 2;
+        }
+
+        .order-summary {
+            flex: 1;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .order-item {
+            display: flex;
+            background: #fff;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            gap: 20px;
+        }
+
+        .item-image img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .product-name {
+            margin: 0 0 5px 0;
+            font-size: 16px;
+        }
+
+        .variant-info {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .current-price {
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: #999;
+            margin-left: 10px;
+            font-size: 14px;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .quantity-btn {
+            width: 28px;
+            height: 28px;
+            border: 1px solid #ddd;
+            background: #f9f9f9;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quantity {
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .delivery-info h4, .payment-method h4 {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .payment-option {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .payment-option.active {
+            border-color: #4CAF50;
+            background-color: #f8fff8;
+        }
+
+        .payment-option i {
+            margin-right: 10px;
+            color: #555;
+        }
+
+        .payment-option.active i {
+            color: #4CAF50;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .summary-row.total {
+            font-weight: bold;
+            font-size: 18px;
+            border-bottom: none;
+        }
+
+        .confirm-order {
+            display: block;
+            width: 100%;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+
+        .confirm-order:hover {
+            background: #45a049;
+        }
+
+        .delivery-type-section {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .delivery-options {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .delivery-option {
+            flex: 1;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .delivery-option.active {
+            border-color: #4CAF50;
+            background-color: #f8fff8;
+        }
+
+        .delivery-option h3 {
+            margin-top: 0;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .delivery-time {
+            color: #4CAF50;
+            font-weight: bold;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+
+        .delivery-address {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+
+        .address-table th, .address-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .address-table th {
+            background-color: #f2f2f2;
+        }
+
+        .address-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+
+        /* Address edit form uchun asosiy stillar */
+        .address-edit-form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        @keyframes fadeInOut {
+            0% {
+                opacity: 0;
+                bottom: 0;
+            }
+            10% {
+                opacity: 1;
+                bottom: 20px;
+            }
+            90% {
+                opacity: 1;
+                bottom: 20px;
+            }
+            100% {
+                opacity: 0;
+                bottom: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .order-content {
+                flex-direction: column;
+            }
+
+            .order-item {
+                flex-direction: column;
+            }
+
+            .item-image img {
+                width: 100%;
+                height: auto;
+            }
+
+            .delivery-options {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .form-row {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .order-item {
+                padding: 10px;
+                gap: 10px;
+            }
+
+            .item-image img {
+                width: 80px;
+                height: 80px;
+            }
+        }
+
+        /* Textarea uchun qo'shimcha stillar */
+        .form-control {
+            min-height: 38px;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        textarea.form-control {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .form-control:focus {
+            border-color: #4CAF50;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+        }
+
+        /* Label uchun qo'shimcha stillar */
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #333;
+        }
+    </style>
+
+    <div class="order-container">
+        <form action="{% url 'orders-save' %}" method="post">
+            {% csrf_token %}
+            <h1 class="order-title">{% trans "Buyurtma ma'lumotlari" %}</h1>
+            <div class="delivery-type-section">
+                <h2>{% trans "Buyurtma turi" %}</h2>
+
+                <div class="delivery-options">
+                    <div class="delivery-option active" data-type="delivery">
+                        <h3><i class="fas fa-truck"></i>{% trans "Yetkazib berish" %}</h3>
+                        <input type="radio" name="type" value="{{ delivery }}" checked hidden>
+                        <p>{% trans  "Buyurtmangizni o'zimiz yetkazib beramiz." %}</p>
+                        <div class="delivery-time">~30 daqiqa</div>
+                    </div>
+
+                    <div class="delivery-option" data-type="pickup">
+                        <h3><i class="fas fa-store"></i>{% trans "Olib ketish" %}</h3>
+                        <input type="radio" name="type" value="{{ take_away }}" hidden>
+                        <p>{% trans "O'zingizga eng yaqin filialdan kelib olib ketishingiz mumkin." %}</p>
+                        <div class="delivery-time">{% trans "Hozir tayyor" %}</div>
+                    </div>
+                </div>
+
+                <div class="delivery-address">
+                    <div class="address-header">
+                        <h3>{% trans "Yetkazish manzili" %}</h3>
+                    </div>
+                    <div class="address-edit-form" id="addressEditMode">
+                        <div class="form-group">
+                            <label for="addressInput">{% trans  "Manzil" %}</label>
+                            <input name="address" type="text" id="addressInput" class="form-control" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="entranceInput">{% trans "Kirish uyqasi" %}</label>
+                                <input name="entrance_hall" type="text" id="entranceInput" class="form-control"
+                                       required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="floorInput">{% trans "Qavat" %}"</label>
+                                <input name="floor" type="text" id="floorInput" class="form-control" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="apartmentInput"> {% trans "Xona" %}</label>
+                                <input name="room" type="text" id="apartmentInput" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="descriptionInput">{% trans "Kuryer uchun izoh" %}</label>
+                            <textarea name="description" id="descriptionInput" class="form-control" rows="3"
+                                      placeholder="Masalan: 3-qavatdan keyin chap tomonda, qizil eshikli"
+                                      required></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="order-content">
+                <div class="order-items">
+                    {% for order in orders %}
+                        <div class="order-item">
+                            <!-- Mahsulot ID va narxini array sifatida yuborish uchun name[] qo'yamiz -->
+                            <input type="hidden" name="items[]" value="{{ order.id }}">
+                            <input type="hidden" name="total_price[]" value="{{ order.total_price }}">
+
+                            <div class="item-image">
+                                <img src="{{ order.product.main_image.url }}" alt="{{ order.product.name }}">
+                            </div>
+                            <div class="item-details">
+                                <h3 class="product-name">{{ order.product.name }}</h3>
+                                <p class="variant-info">{{ order.attribute.name }}</p>
+                                <div class="price-info">
+                                    <span class="current-price">{{ order.product.discount_price }}</span>
+                                    <span class="old-price">{{ order.product.price }}</span>
+                                </div>
+                                <div class="quantity-control">
+                                    <button type="button" class="quantity-btn minus" data-id="{{ order.id }}">-</button>
+                                    <span class="quantity">{{ order.quantity }}</span>
+                                    <button type="button" class="quantity-btn plus" data-id="{{ order.id }}">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div class="order-summary">
+                    <h3> {% trans "Buyurtma xulosasi"%}</h3>
+                    <div class="payment-method">
+                        <h4>{% trans "To'lov usuli"%}</h4>
+                        <div class="payment-option active" data-method="cash">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <span>{% trans "Naqd pul bilan" %}</span>
+                            <input type="radio" name="payment_method" value="cash" checked hidden>
+                        </div>
+                        <div class="payment-option" data-method="card">
+                            <i class="fas fa-credit-card"></i>
+                            <span>{% trans "Karta orqali" %}</span>
+                            <input type="radio" name="payment_method" value="card" hidden>
+                        </div>
+                    </div>
+
+                    <div class="summary-totals">
+                        <div class="summary-row">
+                            <input type="hidden" name="total_price" value="{{ total_price }}" hidden>
+                            <span>{% trans "Mahsulotlar:" %}</span>
+                            <span id="products-total">{{ total_price }} </span>
+                        </div>
+                        <div class="summary-row">
+                            <span>{% trans "Yetkazib berish:" %}</span>
+                            <span id="delivery-cost">{% trans "Bepul" %}</span>
+                        </div>
+                        <div class="summary-row total">
+                            <span>{% trans "Jami:" %}</span>
+                            <span id="total-price">{{ total_price }}</span>
+                        </div>
+                    </div>
+                    <button type="submit" class="confirm-order">{% trans "Buyurtmani tasdiqlash" %}</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Yetkazib berish/Olib ketish tanlovi
+        document.querySelectorAll('.delivery-option').forEach(option => {
+            option.addEventListener('click', function () {
+                document.querySelectorAll('.delivery-option').forEach(opt => {
+                    opt.classList.remove('active');
+                });
+                this.classList.add('active');
+
+                // Tegishli radio inputni tanlash
+                const radioInput = this.querySelector('input[type="radio"]');
+                if (radioInput) {
+                    radioInput.checked = true;
+                }
+
+                // Agar "Olib ketish" tanlansa, yetkazish manzilini yashirish
+                const isPickup = this.dataset.type === 'pickup';
+                document.querySelector('.delivery-address').style.display = isPickup ? 'none' : 'block';
+
+                // Yetkazish narxini yangilash
+                updateDeliveryCost();
+            });
+        });
+
+        // To'lov usulini tanlash
+        document.querySelectorAll('.payment-option').forEach(option => {
+            option.addEventListener('click', function () {
+                document.querySelectorAll('.payment-option').forEach(opt => {
+                    opt.classList.remove('active');
+                });
+                this.classList.add('active');
+
+                // Tegishli radio inputni tanlash
+                const radioInput = this.querySelector('input[type="radio"]');
+                if (radioInput) {
+                    radioInput.checked = true;
+                }
+            });
+        });
+
+        // Manzilni tahrirlash
+        // Avvalgi manzil ko'rsatish bilan bog'liq kodlarni o'chiring
+        // Faqat formani boshqarish uchun zarur kodlarni qoldiring
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Bekor qilish tugmasi - forma maydonlarini tozalash
+            document.querySelector('.btn-cancel').addEventListener('click', function () {
+                document.getElementById('addressInput').value = '';
+                document.getElementById('entranceInput').value = '';
+                document.getElementById('floorInput').value = '';
+                document.getElementById('apartmentInput').value = '';
+                document.getElementById('descriptionInput').value = '';
+            });
+
+            // Saqlash tugmasi - ma'lumotlarni serverga yuborish
+            document.querySelector('.btn-save').addEventListener('click', function () {
+                // Bu yerda form ma'lumotlarini serverga yuborish logikasi
+                showToast('Manzil muvaffaqiyatli saqlandi!');
+            });
+        });
+
+        // Toast bildirishnomasi funksiyasi (agar kerak bo'lsa)
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'toast-notification';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+
+            setTimeout(() => {
+                toast.style.animation = 'fadeInOut 3s ease-in-out';
+                setTimeout(() => toast.remove(), 3000);
+            }, 10);
+        }
+
+        // Mahsulot miqdorini boshqarish
+        // Mahsulot miqdorini boshqarish
+        document.querySelectorAll('.quantity-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const isPlus = this.classList.contains('plus');
+                const orderId = this.dataset.id;
+                const quantityElement = this.parentElement.querySelector('.quantity');
+                let quantity = parseInt(quantityElement.textContent);
+
+                quantity = isPlus ? quantity + 1 : Math.max(1, quantity - 1);
+                quantityElement.textContent = quantity;
+
+                // Tegishli hidden input qiymatini yangilash
+                const itemElement = this.closest('.order-item');
+                itemElement.querySelector('input[name="quantities[]"]').value = quantity;
+
+                // Umumiy summani yangilash
+                updateOrderTotal();
+            });
+        });
+
+        // Umumiy summani yangilash
+        function updateOrderTotal() {
+            let total = 0;
+            document.querySelectorAll('.order-item').forEach(item => {
+                const priceText = item.querySelector('.current-price').textContent;
+                const price = parseFloat(priceText.replace(/[^\d.]/g, ''));
+                const quantity = parseInt(item.querySelector('.quantity').textContent);
+                total += price * quantity;
+
+                // Har bir mahsulot uchun narxni yangilash
+                item.querySelector('input[name="prices[]"]').value = price * quantity;
+            });
+
+            document.getElementById('products-total').textContent = total.toLocaleString() + ' so\'m';
+            document.getElementById('total-price').textContent = total.toLocaleString() + ' so\'m';
+        }
+
+        // Yetkazish narxini yangilash
+        function updateDeliveryCost() {
+            const deliveryOption = document.querySelector('.delivery-option.active');
+            if (deliveryOption && deliveryOption.dataset.type === 'pickup') {
+                document.getElementById('delivery-cost').textContent = 'Bepul';
+            } else {
+                // Bu yerda haqiqiy yetkazish narxini hisoblash mumkin
+                document.getElementById('delivery-cost').textContent = '10,000 so\'m';
+
+                // Jami summani yangilash
+                const productsTotal = parseFloat(document.getElementById('products-total').textContent.replace(/[^\d.]/g, ''));
+                document.getElementById('total-price').textContent = (productsTotal + 10000).toLocaleString() + ' so\'m';
+            }
+        }
+
+        // Toast bildirishnomasi
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'toast-notification';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+
+            // Animatsiyani boshlash
+            setTimeout(() => {
+                toast.style.animation = 'fadeInOut 3s ease-in-out';
+            }, 10);
+
+            // Toastni olib tashlash
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
+
+        // Buyurtmani tasdiqlash
+        document.querySelector('.confirm-order').addEventListener('click', function (e) {
+            e.preventDefault();
+
+            // Bu yerda haqiqiy formani yuborish yoki modal ochish mumkin
+            showToast('Buyurtmangiz qabul qilindi! Tez orada operator siz bilan bog\'lanadi.');
+
+            // 3 soniyadan keyin formani yuborish
+            setTimeout(() => {
+                document.querySelector('form').submit();
+            }, 3000);
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,338 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-07-15 20:01+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+#: .\templates\base\main.html:812
+msgid "Shaxsiy malumotlar"
+msgstr "Личные данные"
+
+#: .\templates\base\main.html:813 .\templates\base\main.html:821
+msgid "Buyurtmalar"
+msgstr "Заказы"
+
+#: .\templates\base\main.html:814 .\templates\base\main.html:822
+#: .\templates\profile\main.html:205
+msgid "Sevimlilar"
+msgstr "Избранное"
+
+#: .\templates\base\main.html:815 .\templates\base\main.html:823
+#: .\templates\profile\main.html:202
+msgid "Manzillarim"
+msgstr "Мои адреса"
+
+#: .\templates\base\main.html:816 .\templates\base\main.html:824
+#: .\templates\profile\notification.html:54
+msgid "Bildirishnomalar"
+msgstr "Уведомления"
+
+#: .\templates\base\main.html:817 .\templates\base\main.html:825
+msgid "Biz haqimizda "
+msgstr "О нас"
+
+#: .\templates\base\main.html:818 .\templates\profile\main.html:215
+msgid "Chiqish"
+msgstr "Выход"
+
+#: .\templates\base\main.html:854
+msgid "Bosh Sahifa   "
+msgstr "Главная"
+
+#: .\templates\base\main.html:855
+msgid "Biz Haqimizda"
+msgstr "О нас"
+
+#: .\templates\base\main.html:856
+msgid "Do'kon"
+msgstr "Магазин"
+
+#: .\templates\base\main.html:857
+msgid "Yangi Mahsulotlar"
+msgstr "Новые товары"
+
+#: .\templates\base\main.html:858
+msgid "Ko'p Sotilganlar"
+msgstr "Популярные товары"
+
+#: .\templates\base\main.html:865
+msgid " Biz Bilan Bog'laning"
+msgstr "Свяжитесь с нами"
+
+#: .\templates\base\main.html:866
+msgid " Ko'p Beriladigan Savollar"
+msgstr "Часто задаваемые вопросы"
+
+#: .\templates\base\main.html:867
+msgid " Yetkazib Berish Shartlari"
+msgstr "Условия доставки"
+
+#: .\templates\base\main.html:868
+msgid "Qaytarish va Pulni Qaytarish"
+msgstr "Возврат и обмен"
+
+#: .\templates\base\main.html:869
+msgid "Maxfiylik Siyosati"
+msgstr "Политика конфиденциальности"
+
+#: .\templates\base\main.html:874
+msgid "Aloqa Ma'lumotlari"
+msgstr "Контактная информация"
+
+#: .\templates\base\main.html:891
+msgid ""
+"2023 ClickBrandShop. Barcha huquqlar himoyalangan. RoboStore uchun ❤️ bilan "
+"ishlab chiqilgan"
+msgstr ""
+"2023 ClickBrandShop. Все права защищены. Сделано с ❤️ для RoboStore"
+
+#: .\templates\login-register\register.html:257
+msgid "ClickBrandShop ga xush kelibsiz"
+msgstr "Добро пожаловать в ClickBrandShop"
+
+#: .\templates\login-register\register.html:264
+msgid "Telefon raqamingizni kiriting"
+msgstr "Введите ваш номер телефона"
+
+#: .\templates\login-register\register.html:270
+msgid "Yaroqsiz telefon raqam"
+msgstr "Неверный номер телефона"
+
+#: .\templates\login-register\register.html:272
+msgid "Davom etish"
+msgstr "Продолжить"
+
+#: .\templates\login-register\register.html:275
+msgid "Foydalanish shartlari"
+msgstr "Условия использования"
+
+#: .\templates\login-register\register.html:276
+msgid "Maxfiylik siyosatiga rozilik bildirasiz "
+msgstr "Вы соглашаетесь с политикой конфиденциальности"
+
+#: .\templates\market\home.html:72
+msgid "Hozir Sotib Oling"
+msgstr "Купить сейчас"
+
+#: .\templates\market\home.html:81
+msgid "Kategoriyalar Bo'yicha Xarid Qiling"
+msgstr "Покупайте по категориям"
+
+#: .\templates\market\home.html:109
+msgid "Barchasini ko'rish"
+msgstr "Смотреть все"
+
+#: .\templates\orders\order.html:354
+msgid "Buyurtma ma'lumotlari"
+msgstr "Информация о заказе"
+
+#: .\templates\orders\order.html:356
+msgid "Buyurtma turi"
+msgstr "Тип заказа"
+
+#: .\templates\orders\order.html:360
+msgid "Yetkazib berish"
+msgstr "Доставка"
+
+#: .\templates\orders\order.html:362
+msgid "Buyurtmangizni o'zimiz yetkazib beramiz."
+msgstr "Мы сами доставим ваш заказ."
+
+#: .\templates\orders\order.html:367
+msgid "Olib ketish"
+msgstr "Самовывоз"
+
+#: .\templates\orders\order.html:369
+msgid "O'zingizga eng yaqin filialdan kelib olib ketishingiz mumkin."
+msgstr "Вы можете забрать из ближайшего филиала."
+
+#: .\templates\orders\order.html:370
+msgid "Hozir tayyor"
+msgstr "Готово сейчас"
+
+#: .\templates\orders\order.html:376
+msgid "Yetkazish manzili"
+msgstr "Адрес доставки"
+
+#: .\templates\orders\order.html:380
+msgid "Manzil"
+msgstr "Адрес"
+
+#: .\templates\orders\order.html:386
+msgid "Kirish uyqasi"
+msgstr "Код подъезда"
+
+#: .\templates\orders\order.html:392 .\templates\profile\address.html:282
+#: .\templates\profile\address.html:325
+msgid "Qavat"
+msgstr "Этаж"
+
+#: .\templates\orders\order.html:397 .\templates\profile\address.html:286
+#: .\templates\profile\address.html:329
+msgid "Xona"
+msgstr "Квартира"
+
+#: .\templates\orders\order.html:403
+msgid "Kuryer uchun izoh"
+msgstr "Комментарий для курьера"
+
+#: .\templates\orders\order.html:441
+msgid "Buyurtma xulosasi"
+msgstr "Итог заказа"
+
+#: .\templates\orders\order.html:443
+msgid "To'lov usuli"
+msgstr "Способ оплаты"
+
+#: .\templates\orders\order.html:446
+msgid "Naqd pul bilan"
+msgstr "Наличными"
+
+#: .\templates\orders\order.html:451
+msgid "Karta orqali"
+msgstr "Картой"
+
+#: .\templates\orders\order.html:459 .\templates\orders\orders_item.html:181
+msgid "Mahsulotlar:"
+msgstr "Товары:"
+
+#: .\templates\orders\order.html:463 .\templates\orders\orders_item.html:185
+msgid "Yetkazib berish:"
+msgstr "Доставка:"
+
+#: .\templates\orders\order.html:464 .\templates\orders\orders_item.html:186
+msgid "Bepul"
+msgstr "Бесплатно"
+
+#: .\templates\orders\order.html:467 .\templates\orders\orders_item.html:189
+#: .\templates\profile\orders.html:39
+msgid "Jami:"
+msgstr "Итого:"
+
+#: .\templates\orders\order.html:471
+msgid "Buyurtmani tasdiqlash"
+msgstr "Подтвердить заказ"
+
+#: .\templates\orders\orders_item.html:143
+msgid "Savat"
+msgstr "Корзина"
+
+#: .\templates\orders\orders_item.html:192
+msgid "Davom Etish"
+msgstr "Продолжить"
+
+#: .\templates\profile\about.html:86 .\templates\profile\main.html:212
+msgid "Biz haqimizda"
+msgstr "О нас"
+
+#: .\templates\profile\about.html:89
+msgid "ClickBrandShop"
+msgstr "ClickBrandShop"
+
+#: .\templates\profile\about.html:104
+msgid "Filiallar"
+msgstr "Филиалы"
+
+#: .\templates\profile\about.html:109
+msgid "Aloqa"
+msgstr "Контакты"
+
+#: .\templates\profile\about.html:116
+msgid "Ijtimoiy tarmoqlar"
+msgstr "Социальные сети"
+
+#: .\templates\profile\address.html:233
+msgid "Manzillar"
+msgstr "Адреса"
+
+#: .\templates\profile\address.html:235 .\templates\profile\address.html:268
+msgid "Yangi manzil qo'shish"
+msgstr "Добавить новый адрес"
+
+#: .\templates\profile\address.html:243
+msgid "Asosiy manzil"
+msgstr "Основной адрес"
+
+#: .\templates\profile\address.html:250
+msgid "Qo'shimcha:"
+msgstr "Дополнительно:"
+
+#: .\templates\profile\address.html:253
+msgid "Tahrirlash"
+msgstr "Редактировать"
+
+#: .\templates\profile\address.html:256
+msgid "O'chirish"
+msgstr "Удалить"
+
+#: .\templates\profile\address.html:272 .\templates\profile\address.html:315
+msgid "To'liq manzil"
+msgstr "Полный адрес"
+
+#: .\templates\profile\address.html:278 .\templates\profile\address.html:321
+msgid "Kirish"
+msgstr "Подъезд"
+
+#: .\templates\profile\address.html:291 .\templates\profile\address.html:334
+msgid "Qo'shimcha izoh"
+msgstr "Дополнительный комментарий"
+
+#: .\templates\profile\address.html:296 .\templates\profile\profile.html:19
+msgid "Saqlash"
+msgstr "Сохранить"
+
+#: .\templates\profile\address.html:305
+msgid "Manzilni tahrirlash "
+msgstr "Редактирование адреса"
+
+#: .\templates\profile\address.html:338
+msgid "O'zgarishlarni saqlash"
+msgstr "Сохранить изменения"
+
+#: .\templates\profile\main.html:190 .\templates\search\products.html:77
+#: .\templates\search\search.html:53
+msgid "Orqaga"
+msgstr "Назад"
+
+#: .\templates\profile\main.html:196 .\templates\profile\profile.html:6
+msgid "Shaxsiy ma'lumotlar"
+msgstr "Личные данные"
+
+#: .\templates\profile\main.html:199 .\templates\profile\orders.html:6
+msgid "Buyurtmalar tarixi"
+msgstr "История заказов"
+
+#: .\templates\profile\main.html:208
+msgid "Bildirishmalar"
+msgstr "Уведомления"
+
+#: .\templates\profile\orders.html:48
+msgid "Sizda hali buyurtmalar mavjud emas"
+msgstr "У вас пока нет заказов"
+
+#: .\templates\profile\orders.html:49
+msgid "Xarid qilish"
+msgstr "Покупать"
+
+#: .\templates\profile\wishlist.html:132
+msgid "Sevimlilar Ro'yxati"
+msgstr "Список избранного"
+
+#: .\templates\profile\wishlist.html:166
+msgid "Siz hali hech qanday mahsulotni sevimlilarga qo‘shmagansiz."
+msgstr "Вы еще не добавили товары в избранное."

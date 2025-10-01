@@ -1,0 +1,337 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-07-15 20:01+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+#: .\templates\base\main.html:812
+msgid "Shaxsiy malumotlar"
+msgstr "Shaxsiy ma'lumotlar"
+
+#: .\templates\base\main.html:813 .\templates\base\main.html:821
+msgid "Buyurtmalar"
+msgstr "Buyurtmalar"
+
+#: .\templates\base\main.html:814 .\templates\base\main.html:822
+#: .\templates\profile\main.html:205
+msgid "Sevimlilar"
+msgstr "Sevimlilar"
+
+#: .\templates\base\main.html:815 .\templates\base\main.html:823
+#: .\templates\profile\main.html:202
+msgid "Manzillarim"
+msgstr "Manzillarim"
+
+#: .\templates\base\main.html:816 .\templates\base\main.html:824
+#: .\templates\profile\notification.html:54
+msgid "Bildirishnomalar"
+msgstr "Bildirishnomalar"
+
+#: .\templates\base\main.html:817 .\templates\base\main.html:825
+msgid "Biz haqimizda "
+msgstr "Biz haqimizda"
+
+#: .\templates\base\main.html:818 .\templates\profile\main.html:215
+msgid "Chiqish"
+msgstr "Chiqish"
+
+#: .\templates\base\main.html:854
+msgid "Bosh Sahifa   "
+msgstr "Bosh Sahifa"
+
+#: .\templates\base\main.html:855
+msgid "Biz Haqimizda"
+msgstr "Biz Haqimizda"
+
+#: .\templates\base\main.html:856
+msgid "Do'kon"
+msgstr "Do'kon"
+
+#: .\templates\base\main.html:857
+msgid "Yangi Mahsulotlar"
+msgstr "Yangi Mahsulotlar"
+
+#: .\templates\base\main.html:858
+msgid "Ko'p Sotilganlar"
+msgstr "Ko'p Sotilganlar"
+
+#: .\templates\base\main.html:865
+msgid " Biz Bilan Bog'laning"
+msgstr "Biz Bilan Bog'laning"
+
+#: .\templates\base\main.html:866
+msgid " Ko'p Beriladigan Savollar"
+msgstr "Ko'p Beriladigan Savollar"
+
+#: .\templates\base\main.html:867
+msgid " Yetkazib Berish Shartlari"
+msgstr "Yetkazib Berish Shartlari"
+
+#: .\templates\base\main.html:868
+msgid "Qaytarish va Pulni Qaytarish"
+msgstr "Qaytarish va Pulni Qaytarish"
+
+#: .\templates\base\main.html:869
+msgid "Maxfiylik Siyosati"
+msgstr "Maxfiylik Siyosati"
+
+#: .\templates\base\main.html:874
+msgid "Aloqa Ma'lumotlari"
+msgstr "Aloqa Ma'lumotlari"
+
+#: .\templates\base\main.html:891
+msgid ""
+"2023 ClickBrandShop. Barcha huquqlar himoyalangan. RoboStore uchun ❤️ bilan "
+"ishlab chiqilgan"
+msgstr ""
+"2023 ClickBrandShop. Barcha huquqlar himoyalangan. RoboStore uchun ❤️ bilan "
+"ishlab chiqilgan"
+
+#: .\templates\login-register\register.html:257
+msgid "ClickBrandShop ga xush kelibsiz"
+msgstr "ClickBrandShop ga xush kelibsiz"
+
+#: .\templates\login-register\register.html:264
+msgid "Telefon raqamingizni kiriting"
+msgstr "Telefon raqamingizni kiriting"
+
+#: .\templates\login-register\register.html:270
+msgid "Yaroqsiz telefon raqam"
+msgstr "Yaroqsiz telefon raqam"
+
+#: .\templates\login-register\register.html:272
+msgid "Davom etish"
+msgstr "Davom etish"
+
+#: .\templates\login-register\register.html:275
+msgid "Foydalanish shartlari"
+msgstr "Foydalanish shartlari"
+
+#: .\templates\login-register\register.html:276
+msgid "Maxfiylik siyosatiga rozilik bildirasiz "
+msgstr "Maxfiylik siyosatiga rozilik bildirasiz"
+
+#: .\templates\market\home.html:72
+msgid "Hozir Sotib Oling"
+msgstr "Hozir Sotib Oling"
+
+#: .\templates\market\home.html:81
+msgid "Kategoriyalar Bo'yicha Xarid Qiling"
+msgstr "Kategoriyalar Bo'yicha Xarid Qiling"
+
+#: .\templates\market\home.html:109
+msgid "Barchasini ko'rish"
+msgstr "Barchasini ko'rish"
+
+#: .\templates\orders\order.html:354
+msgid "Buyurtma ma'lumotlari"
+msgstr "Buyurtma ma'lumotlari"
+
+#: .\templates\orders\order.html:356
+msgid "Buyurtma turi"
+msgstr "Buyurtma turi"
+
+#: .\templates\orders\order.html:360
+msgid "Yetkazib berish"
+msgstr "Yetkazib berish"
+
+#: .\templates\orders\order.html:362
+msgid "Buyurtmangizni o'zimiz yetkazib beramiz."
+msgstr "Buyurtmangizni o'zimiz yetkazib beramiz."
+
+#: .\templates\orders\order.html:367
+msgid "Olib ketish"
+msgstr "Olib ketish"
+
+#: .\templates\orders\order.html:369
+msgid "O'zingizga eng yaqin filialdan kelib olib ketishingiz mumkin."
+msgstr "O'zingizga eng yaqin filialdan kelib olib ketishingiz mumkin."
+
+#: .\templates\orders\order.html:370
+msgid "Hozir tayyor"
+msgstr "Hozir tayyor"
+
+#: .\templates\orders\order.html:376
+msgid "Yetkazish manzili"
+msgstr "Yetkazish manzili"
+
+#: .\templates\orders\order.html:380
+msgid "Manzil"
+msgstr "Manzil"
+
+#: .\templates\orders\order.html:386
+msgid "Kirish uyqasi"
+msgstr "Kirish uyqasi"
+
+#: .\templates\orders\order.html:392 .\templates\profile\address.html:282
+#: .\templates\profile\address.html:325
+msgid "Qavat"
+msgstr "Qavat"
+
+#: .\templates\orders\order.html:397 .\templates\profile\address.html:286
+#: .\templates\profile\address.html:329
+msgid "Xona"
+msgstr "Xona"
+
+#: .\templates\orders\order.html:403
+msgid "Kuryer uchun izoh"
+msgstr "Kuryer uchun izoh"
+
+#: .\templates\orders\order.html:441
+msgid "Buyurtma xulosasi"
+msgstr "Buyurtma xulosasi"
+
+#: .\templates\orders\order.html:443
+msgid "To'lov usuli"
+msgstr "To'lov usuli"
+
+#: .\templates\orders\order.html:446
+msgid "Naqd pul bilan"
+msgstr "Naqd pul bilan"
+
+#: .\templates\orders\order.html:451
+msgid "Karta orqali"
+msgstr "Karta orqali"
+
+#: .\templates\orders\order.html:459 .\templates\orders\orders_item.html:181
+msgid "Mahsulotlar:"
+msgstr "Mahsulotlar:"
+
+#: .\templates\orders\order.html:463 .\templates\orders\orders_item.html:185
+msgid "Yetkazib berish:"
+msgstr "Yetkazib berish:"
+
+#: .\templates\orders\order.html:464 .\templates\orders\orders_item.html:186
+msgid "Bepul"
+msgstr "Bepul"
+
+#: .\templates\orders\order.html:467 .\templates\orders\orders_item.html:189
+#: .\templates\profile\orders.html:39
+msgid "Jami:"
+msgstr "Jami:"
+
+#: .\templates\orders\order.html:471
+msgid "Buyurtmani tasdiqlash"
+msgstr "Buyurtmani tasdiqlash"
+
+#: .\templates\orders\orders_item.html:143
+msgid "Savat"
+msgstr "Savat"
+
+#: .\templates\orders\orders_item.html:192
+msgid "Davom Etish"
+msgstr "Davom Etish"
+
+#: .\templates\profile\about.html:86 .\templates\profile\main.html:212
+msgid "Biz haqimizda"
+msgstr "Biz haqimizda"
+
+#: .\templates\profile\about.html:89
+msgid "ClickBrandShop"
+msgstr "ClickBrandShop"
+
+#: .\templates\profile\about.html:104
+msgid "Filiallar"
+msgstr "Filiallar"
+
+#: .\templates\profile\about.html:109
+msgid "Aloqa"
+msgstr "Aloqa"
+
+#: .\templates\profile\about.html:116
+msgid "Ijtimoiy tarmoqlar"
+msgstr "Ijtimoiy tarmoqlar"
+
+#: .\templates\profile\address.html:233
+msgid "Manzillar"
+msgstr "Manzillar"
+
+#: .\templates\profile\address.html:235 .\templates\profile\address.html:268
+msgid "Yangi manzil qo'shish"
+msgstr "Yangi manzil qo'shish"
+
+#: .\templates\profile\address.html:243
+msgid "Asosiy manzil"
+msgstr "Asosiy manzil"
+
+#: .\templates\profile\address.html:250
+msgid "Qo'shimcha:"
+msgstr "Qo'shimcha:"
+
+#: .\templates\profile\address.html:253
+msgid "Tahrirlash"
+msgstr "Tahrirlash"
+
+#: .\templates\profile\address.html:256
+msgid "O'chirish"
+msgstr "O'chirish"
+
+#: .\templates\profile\address.html:272 .\templates\profile\address.html:315
+msgid "To'liq manzil"
+msgstr "To'liq manzil"
+
+#: .\templates\profile\address.html:278 .\templates\profile\address.html:321
+msgid "Kirish"
+msgstr "Kirish"
+
+#: .\templates\profile\address.html:291 .\templates\profile\address.html:334
+msgid "Qo'shimcha izoh"
+msgstr "Qo'shimcha izoh"
+
+#: .\templates\profile\address.html:296 .\templates\profile\profile.html:19
+msgid "Saqlash"
+msgstr "Saqlash"
+
+#: .\templates\profile\address.html:305
+msgid "Manzilni tahrirlash "
+msgstr "Manzilni tahrirlash"
+
+#: .\templates\profile\address.html:338
+msgid "O'zgarishlarni saqlash"
+msgstr "O'zgarishlarni saqlash"
+
+#: .\templates\profile\main.html:190 .\templates\search\products.html:77
+#: .\templates\search\search.html:53
+msgid "Orqaga"
+msgstr "Orqaga"
+
+#: .\templates\profile\main.html:196 .\templates\profile\profile.html:6
+msgid "Shaxsiy ma'lumotlar"
+msgstr "Shaxsiy ma'lumotlar"
+
+#: .\templates\profile\main.html:199 .\templates\profile\orders.html:6
+msgid "Buyurtmalar tarixi"
+msgstr "Buyurtmalar tarixi"
+
+#: .\templates\profile\main.html:208
+msgid "Bildirishmalar"
+msgstr "Bildirishmalar"
+
+#: .\templates\profile\orders.html:48
+msgid "Sizda hali buyurtmalar mavjud emas"
+msgstr "Sizda hali buyurtmalar mavjud emas"
+
+#: .\templates\profile\orders.html:49
+msgid "Xarid qilish"
+msgstr "Xarid qilish"
+
+#: .\templates\profile\wishlist.html:132
+msgid "Sevimlilar Ro'yxati"
+msgstr "Sevimlilar Ro'yxati"
+
+#: .\templates\profile\wishlist.html:166
+msgid "Siz hali hech qanday mahsulotni sevimlilarga qo‘shmagansiz."
+msgstr "Siz hali hech qanday mahsulotni sevimlilarga qo'shmagansiz."

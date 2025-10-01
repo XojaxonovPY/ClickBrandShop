@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+{% load i18n %}
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> ClickBrandShop - Premium Online Do'kon </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+    <style>
+        /* Asosiy stil */
+        .header-icons {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .header-icon {
+            position: relative;
+            font-size: 22px;
+            color: #2c3e50;
+            cursor: pointer;
+            padding: 10px;
+            transition: all 0.3s;
+        }
+
+        .header-icon:hover {
+            color: #4a6de5;
+        }
+
+
+        /* Dropdown menyu */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: white;
+            min-width: 280px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            z-index: 1000;
+            padding: 15px;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Foydalanuvchi menyusi */
+        .dropdown-content a {
+            display: block;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: #2c3e50;
+            transition: all 0.3s;
+            border-radius: 4px;
+        }
+
+        .dropdown-content a i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f5f7fa;
+            color: #4a6de5;
+            padding-left: 20px;
+        }
+
+
+        .dropdown-header h4 {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        .dropdown-header span {
+            font-size: 12px;
+            color: #6c757d;
+        }
+
+
+        .wishlist-item img, .cart-item img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+
+        .wishlist-item span, .cart-item-details span {
+            display: block;
+            font-size: 14px;
+        }
+
+        .remove-item {
+            background: none;
+            border: none;
+            color: #6c757d;
+            cursor: pointer;
+            margin-left: auto;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            font-weight: 600;
+            border-top: 1px solid #eee;
+        }
+
+        .checkout {
+            background: #4a6de5;
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .dropdown-content {
+                position: fixed;
+                top: 60px;
+                right: 10px;
+                left: 10px;
+                min-width: auto;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            --primary: #4a6de5;
+            --secondary: #ff6b6b;
+            --dark: #2c3e50;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --success: #28a745;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+            position: relative;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .top-bar {
+            background-color: var(--primary);
+            color: white;
+            padding: 8px 0;
+            font-size: 14px;
+        }
+
+        .top-bar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .contact-info span {
+            margin-right: 20px;
+        }
+
+        .social-icons a {
+            color: white;
+            margin-left: 15px;
+            font-size: 16px;
+        }
+
+        .main-header {
+            padding: 15px 0;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .search-bar {
+            flex-grow: 1;
+            max-width: 500px;
+            margin: 0 30px;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 12px 20px;
+            border-radius: 30px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .search-bar button {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            background: var(--primary);
+            border: none;
+            color: white;
+            border-radius: 30px;
+            padding: 7px 20px;
+            cursor: pointer;
+        }
+
+        .header-icons {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-icon {
+            position: relative;
+            margin-left: 20px;
+            font-size: 22px;
+            color: var(--dark);
+            cursor: pointer;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--dark);
+            padding: 15px 0;
+        }
+
+        .nav-links li {
+            margin-right: 25px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            color: white;
+            margin-bottom: 50px;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--primary);
+            color: white;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background: #3a5bd0;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+        }
+
+        .btn-secondary:hover {
+            background: #e55a5a;
+        }
+
+        /* Categories */
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+            color: var(--dark);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background: var(--primary);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .categories {
+            padding: 50px 0;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .category-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .category-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .category-card:hover .category-img img {
+            transform: scale(1.1);
+        }
+
+        .category-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .category-info h3 {
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        .category-info p {
+            color: var(--gray);
+            font-size: 14px;
+        }
+
+        /* Products */
+        .products {
+            padding: 50px 0;
+            background: var(--light);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--secondary);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 600;
+            z-index: 1;
+        }
+
+        .product-img {
+            height: 200px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f9f9f9;
+        }
+
+        .product-img img {
+            max-width: 100%;
+            max-height: 160px;
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover .product-img img {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .product-category {
+            color: var(--primary);
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .product-name {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            height: 40px;
+            overflow: hidden;
+        }
+
+        .product-price {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .current-price {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .old-price {
+            font-size: 14px;
+            color: var(--gray);
+            text-decoration: line-through;
+            margin-left: 10px;
+        }
+
+        .product-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .add-to-cart {
+            flex-grow: 1;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background: #3a5bd0;
+        }
+
+        .wishlist {
+            width: 40px;
+            background: #f5f5f5;
+            border: none;
+            border-radius: 5px;
+            margin-left: 10px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .wishlist:hover {
+            background: #e9ecef;
+        }
+
+
+        /* Footer */
+        /* FOOTER STYLES */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 50px 0 20px;
+            font-size: 14px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-col {
+            margin-bottom: 20px;
+        }
+
+        .footer-col h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            position: relative;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background-color: #4a6de5;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .footer-links li::before {
+            content: '>';
+            position: absolute;
+            left: 0;
+            color: #4a6de5;
+        }
+
+        .footer-links li a {
+            color: #b0b0b0;
+            text-decoration: none;
+            transition: color 0.3s;
+            display: block;
+        }
+
+        .footer-links li a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .contact-info-footer {
+            list-style: none;
+        }
+
+        .contact-info-footer li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .contact-info-footer i {
+            color: #4a6de5;
+            margin-right: 10px;
+            font-size: 16px;
+            margin-top: 3px;
+        }
+
+        .contact-info-footer span {
+            flex: 1;
+            color: #b0b0b0;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .footer-col {
+                margin-bottom: 30px;
+            }
+
+            .footer-col h3 {
+                margin-bottom: 15px;
+            }
+        }
+
+        /* CSS faylga qo'shing */
+        .invisible-link {
+            color: inherit; /* Ota element rangini meros qilib oladi */
+            text-decoration: none; /* Tag chizig'ini olib tashlaydi */
+            cursor: default; /* Ko'rsatgich shaklini oddiy qiladi */
+        }
+
+        .invisible-link:hover,
+        .invisible-link:focus {
+            text-decoration: none; /* Sichqoncha olib borilganda ham tag chizig'isiz */
+            outline: none; /* Fokusda kontur chizmasligi uchun */
+        }
+
+        .search-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .search-form .input-group {
+            display: flex;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-form input[type="text"] {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .search-form button {
+            padding: 0 20px;
+            border: none;
+            background-color: #27ae60;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .search-form button:hover {
+            background-color: #219150;
+        }
+
+        .language-switcher {
+            display: inline-block;
+            position: relative;
+            font-family: sans-serif;
+        }
+
+        .language-switcher select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+
+            background-color: #f9fafb;
+            color: #111827;
+            border: 1px solid #d1d5db;
+            border-radius: 10px;
+            padding: 10px 40px 10px 12px;
+            font-size: 14px;
+            cursor: pointer;
+
+            transition: border-color 0.3s ease;
+        }
+
+        .language-switcher select:hover {
+            border-color: #9ca3af;
+        }
+
+        .language-switcher::after {
+            content: "▼";
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 12px;
+            color: #6b7280;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+<!-- Header -->
+<header>
+    <div class="top-bar">
+        <div class="container top-bar-content">
+            <div class="contact-info">
+                <span><i class="fas fa-phone"></i> +998 99 123 45 67</span>
+                <span><i class="fas fa-envelope"></i> info@clickbrandshop.uz</span>
+            </div>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/clickmarket.uz"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/clickbrandshop/"><i class="fab fa-instagram"></i></a>
+                <a href="https://t.me/clickmarket_uz"><i class="fab fa-telegram"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-header">
+        <div class="container header-content">
+            <div class="logo">
+                <a href="{% url 'main' %}" class="invisible-link">Click<span>Brand</span>Shop</a>
+            </div>
+            <form action="{% url 'search' %}" method="post" class="search-form mt-3 mb-4">
+                {% csrf_token %}
+                <div class="input-group">
+                    <input type="text" name="name" class="form-control" placeholder="Mahsulotlarni qidirish..."
+                           aria-label="Search">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-search"></i> Qidirish
+                    </button>
+                </div>
+            </form>
+            <form action="{% url 'set_language' %}" method="post" class="language-switcher">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ request.path }}">
+                <select name="language" onchange="this.form.submit()">
+                    <option value="uz" {% if request.LANGUAGE_CODE == 'uz' %}selected{% endif %}>🇺🇿 O‘zbekcha</option>
+                    <option value="ru" {% if request.LANGUAGE_CODE == 'ru' %}selected{% endif %}>🇷🇺 Русский</option>
+                </select>
+            </form>
+
+
+            <div class="header-icons">
+                <!-- Foydalanuvchi menyusi -->
+                <div class="header-icon dropdown">
+                    <i class="fas fa-user"></i>
+                    <div class="dropdown-content">
+                        {% if request.user.is_authenticated %}
+                            <a href="{% url 'profile' %}"><i
+                                    class="fas fa-user-edit"></i>{% trans 'Shaxsiy malumotlar' %} </a>
+                            <a href="{% url 'order-list' %}"><i
+                                    class="fas fa-shopping-bag"></i> {% trans "Buyurtmalar" %}</a>
+                            <a href="{% url 'wishlist-list' %}"><i class="fas fa-heart"></i> {% trans "Sevimlilar" %}
+                            </a>
+                            <a href="{% url 'address-list' %}"><i
+                                    class="fas fa-map-marker-alt"></i> {% trans "Manzillarim" %}</a>
+                            <a href="{% url 'profile-notifications' %}"><i
+                                    class="fas fa-bell"></i> {% trans "Bildirishnomalar" %}</a>
+                            <a href="{% url 'profile-about' %}"><i
+                                    class="fas fa-info-circle"></i> {% trans "Biz haqimizda " %}</a>
+                            <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> {% trans "Chiqish" %}</a>
+                        {% else %}
+                            <a href="{% url 'register' %}"><i
+                                    class="fas fa-user-edit"></i> {% trans "Shaxsiy malumotlar" %}</a>
+                            <a href="{% url 'register' %}"><i class="fas fa-shopping-bag"></i> {% trans "Buyurtmalar" %}
+                            </a>
+                            <a href="{% url 'register' %}"><i class="fas fa-heart"></i> {% trans "Sevimlilar" %}</a>
+                            <a href="{% url 'register' %}"><i
+                                    class="fas fa-map-marker-alt"></i> {% trans "Manzillarim" %}</a>
+                            <a href="{% url 'register' %}"><i class="fas fa-bell"></i> {% trans "Bildirishnomalar" %}
+                            </a>
+                            <a href="{% url 'register' %}"><i
+                                    class="fas fa-info-circle"></i> {% trans "Biz haqimizda " %}</a>
+                        {% endif %}
+                    </div>
+                </div>
+                <!-- Savat menyusi -->
+                {% if  request.user.is_authenticated %}
+                    <div class="header-icon dropdown">
+                        <a href="{% url 'item-list' %}"><i class="fas fa-shopping-cart"></i></a>
+                        <span class="cart-count">3</span>
+                    </div>
+                {% else %}
+                    <div class="header-icon dropdown">
+                        <a href="{% url 'register' %}"><i class="fas fa-shopping-cart"></i></a>
+                        <span class="cart-count">3</span>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+
+</header>
+
+<!-- Hero Section -->
+{% block main %}
+
+{% endblock %}
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+
+            <div class="footer-col">
+                <h3>Tezkor Havolalar</h3>
+                <ul class="footer-links">
+                    <li>>{% trans "Bosh Sahifa   " %}</li>
+                    <li>>{% trans "Biz Haqimizda" %}</li>
+                    <li>>{% trans "Do'kon" %}</li>
+                    <li>>{% trans "Yangi Mahsulotlar" %}</li>
+                    <li>>{% trans "Ko'p Sotilganlar" %}</li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Mijozlarga Xizmat</h3>
+                <ul class="footer-links">
+                    <li><a href="#"> {% trans " Biz Bilan Bog'laning" %}</a></li>
+                    <li><a href="#"> {% trans " Ko'p Beriladigan Savollar" %}</a></li>
+                    <li><a href="#"> {% trans " Yetkazib Berish Shartlari" %}</a></li>
+                    <li><a href="#"> {% trans "Qaytarish va Pulni Qaytarish" %}</a></li>
+                    <li><a href="#"> {% trans "Maxfiylik Siyosati" %}</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>{% trans "Aloqa Ma'lumotlari" %}</h3>
+                <ul class="contact-info-footer">
+                    <li>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>{{ setting.address }}</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-phone"></i>
+                        <span>{{ setting.phone_number }}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="copyright">
+        <div class="container">
+            <p>
+                &copy; {% trans "2023 ClickBrandShop. Barcha huquqlar himoyalangan. RoboStore uchun ❤️ bilan ishlab chiqilgan" %}"</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Simple JavaScript for interactive elements
+    document.addEventListener('DOMContentLoaded', function () {
+        // Product filter buttons
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+
+                // Add active class to clicked button
+                this.classList.add('active');
+
+                // Filter products based on category
+                const category = this.textContent;
+                filterProducts(category);
+            });
+        });
+
+        // Add to cart buttons
+        const addToCartButtons = document.querySelectorAll('.add-to-cart');
+        const cartCount = document.querySelector('.cart-count');
+        let count = 3;
+
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                count++;
+                cartCount.textContent = count;
+                localStorage.setItem('cartCount', count);
+
+                // Animation effect
+                this.textContent = "Qo'shildi!";
+                setTimeout(() => {
+                    this.textContent = 'Savatga Qo\'shish';
+                }, 1500);
+            });
+        });
+
+        // Convert prices to UZS
+        const exchangeRate = 12500;
+        document.querySelectorAll('.current-price, .old-price').forEach(price => {
+            if (price.textContent.includes('$')) {
+                const dollarValue = parseFloat(price.textContent.replace('$', ''));
+                price.textContent = Math.round(dollarValue * exchangeRate).toLocaleString() + ' so\'m';
+            }
+        });
+
+        // Initialize cart count from localStorage
+        const savedCartCount = localStorage.getItem('cartCount');
+        if (savedCartCount) {
+            cartCount.textContent = savedCartCount;
+            count = parseInt(savedCartCount);
+        }
+    });
+    document.addEventListener('DOMContentLoaded', function () {
+        // Savatdan mahsulot o'chirish
+        document.querySelectorAll('.remove-item').forEach(button => {
+            button.addEventListener('click', function (e) {
+                e.stopPropagation();
+                this.closest('.cart-item').remove();
+                updateCartCount();
+            });
+        });
+
+        // Savatdagi mahsulotlar sonini yangilash
+        function updateCartCount() {
+            const count = document.querySelectorAll('.cart-item').length;
+            document.querySelector('.cart-count').textContent = count;
+            document.querySelector('.dropdown-header span').textContent = count + ' ta mahsulot';
+        }
+
+        // Foydalanuvchi menyusi
+        const userDropdown = document.querySelector('.header-icon.dropdown');
+        userDropdown.addEventListener('click', function (e) {
+            if (window.innerWidth <= 768px;
+        )
+        )
+            {
+                e.preventDefault();
+                this.querySelector('.dropdown-content').classList.toggle('show');
+            }
+        });
+
+        // Mobil versiyada menyuni yopish
+        document.addEventListener('click', function (e) {
+            if (!e.target.closest('.dropdown') && window.innerWidth <= 768px
+        )
+            {
+                document.querySelectorAll('.dropdown-content').forEach(dropdown => {
+                    dropdown.classList.remove('show');
+                });
+            }
+        });
+    });
+</script>
+</body>
+</html>

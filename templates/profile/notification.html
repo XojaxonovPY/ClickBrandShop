@@ -1,0 +1,67 @@
+{% extends 'profile/main.html' %}
+{% load i18n %}
+
+{% block profile %}
+    <style>
+        .notifications-container {
+            padding: 20px;
+        }
+
+        .notification-card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .notification-icon {
+            font-size: 20px;
+            color: #3498db;
+            margin-top: 4px;
+        }
+
+        .notification-content h5 {
+            margin: 0 0 5px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .notification-content p {
+            margin: 0;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .notification-time {
+            font-size: 12px;
+            color: #aaa;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .notification-card {
+                flex-direction: column;
+            }
+        }
+    </style>
+
+    <div class="notifications-container">
+        <h2 class="mb-4"><i class="fas fa-bell"></i>{% trans "Bildirishnomalar" %}</h2>
+        {% for notification in notifications %}
+            <div class="notification-card">
+                <i class="fas fa-bell notification-icon"></i>
+                <div class="notification-content">
+                    <h5>{{ notification.title }}</h5>
+                    <p>{{ notification.message }}</p>
+                    <div class="notification-time">{{ notification.created_at }}</div>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+{% endblock %}

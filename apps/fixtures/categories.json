@@ -1,0 +1,30 @@
+[
+  {
+    "model": "apps.category",
+    "pk": 1,
+    "fields": {
+      "urllib": "https://img.icons8.com/external-smashingstocks-glyph-smashing-stocks/66/external-t-shirt-web-smashingstocks-glyph-smashing-stocks.png"
+    }
+  },
+  {
+    "model": "apps.category",
+    "pk": 2,
+    "fields": {
+      "urllib": "https://img.icons8.com/external-vitaliy-gorbachev-fill-vitaly-gorbachev/60/external-dress-clothes-vitaliy-gorbachev-fill-vitaly-gorbachev.png"
+    }
+  },
+  {
+    "model": "apps.category",
+    "pk": 3,
+    "fields": {
+      "urllib": "https://img.icons8.com/pastel-glyph/64/glasses.png"
+    }
+  },
+  {
+    "model": "apps.category",
+    "pk": 4,
+    "fields": {
+      "urllib": "https://img.icons8.com/external-dreamstale-lineal-dreamstale/32/external-baby-baby-dreamstale-lineal-dreamstale.png"
+    }
+  }
+]

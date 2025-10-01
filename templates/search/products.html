@@ -1,0 +1,146 @@
+{% extends 'base/main.html' %}
+{% load i18n %}
+{% block main %}
+    <style>
+        .no-underline {
+            text-decoration: none; /* Chiziqni olib tashlash */
+            color: inherit; /* Ota elementdan rangni meros olish */
+        }
+
+        .no-underline:hover {
+            text-decoration: none; /* Sichqoncha ustiga kelganda ham chiziq bo'lmasin */
+        }
+
+        /* Kategoriya sarlavhasi uchun stil */
+        .section-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .view-all {
+            color: #007bff;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        /* Mahsulotlar gridi */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        /* Kategoriyalar orasidagi masofa */
+        .products-by-category .container {
+            margin-bottom: 50px;
+        }
+
+        .plain-link {
+            text-decoration: none; /* Chiziqni olib tashlash */
+            color: inherit; /* Ota elementdan rangni meros olish */
+        }
+
+        .plain-link:hover {
+            text-decoration: none; /* Sichqoncha ustiga kelganda ham chiziq bo'lmasin */
+            color: inherit; /* Hover holatida rang o'zgarishining oldini olish */
+        }
+
+        .plain-link h3 {
+            margin: 0; /* h3 tegi uchun marginlarni olib tashlash */
+            font-weight: 600;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            color: #fff;
+        }
+
+
+    </style>
+
+    <section class="categories">
+        <div class="container mb-3">
+            <a href="{% url 'main' %}" class="btn btn-secondary">
+                <i class="fas fa-arrow-left me-2"></i>{% trans "Orqaga" %}
+            </a>
+        </div>
+        <div class="container">
+            <div class="section-title">
+                <h2>Kategoriyalar Bo'yicha Xarid Qiling</h2>
+            </div>
+            <div class="category-grid">
+                {% for category in categories %}
+                    <div class="category-card">
+                        <div class="category-img">
+                            <a href="{% url 'product-list' %}?category={{ category.pk }}"><img
+                                    src="{{ category.urllib }}"
+                                    alt="{{ category.name }}"></a>
+                        </div>
+                        <div class="category-info">
+                            <a href="{% url 'product-list' %}?category={{ category.pk }}" class="plain-link">
+                                <h3>{{ category.name }}</h3></a>
+                            <p>{{ category.products.quantity }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section class="products-by-category">
+        {% for category in categories %}
+            <div class="container">
+                <div class="product-grid">
+                    {% for product in category.products.all|slice:":4" %}
+                        <div class="product-card">
+                            {% if product.discount %}
+                                <span class="product-badge">-{{ product.discount }}%</span>
+                            {% endif %}
+                            <div class="product-img">
+                                <a href="{% url 'product_detail' product.pk %}">
+                                    <img src="{{ product.main_image.url }}" alt="{{ product.name }}">
+                                </a>
+                            </div>
+                            <div class="product-info">
+                                <a href="{% url 'product_detail' product.pk %}" class="no-underline">
+                                    <h3 class="product-name">{{ product.name }}</h3>
+                                </a>
+                                <div class="product-price">
+                                    <span class="current-price">{{ product.discount_price }} so'm</span>
+                                    {% if product.discount %}
+                                        <span class="old-price">{{ product.price }} so'm</span>
+                                    {% endif %}
+                                </div>
+                                <div class="product-actions">
+                                    <a href="{% url 'product_detail' product.pk %}" class="no-underline">
+                                        <button class="add-to-cart" data-product-id="{{ product.id }}">Savatga
+                                            Qo'shish
+                                        </button>
+                                    </a>
+
+                                    <button class="wishlist" data-product-id="{{ product.id }}">
+                                        <i class="far fa-heart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    </section>
+
+{% endblock %}

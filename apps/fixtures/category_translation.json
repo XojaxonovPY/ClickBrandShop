@@ -1,0 +1,74 @@
+[
+  {
+    "model": "apps.categorytranslation",
+    "pk": 1,
+    "fields": {
+      "language_code": "uz",
+      "name": "Erkaklar kiyimi",
+      "master": 1
+    }
+  },
+  {
+    "model": "apps.categorytranslation",
+    "pk": 2,
+    "fields": {
+      "language_code": "ru",
+      "name": "������� ������",
+      "master": 1
+    }
+  },
+  {
+    "model": "apps.categorytranslation",
+    "pk": 3,
+    "fields": {
+      "language_code": "uz",
+      "name": "Ayollar kiyimi",
+      "master": 2
+    }
+  },
+  {
+    "model": "apps.categorytranslation",
+    "pk": 4,
+    "fields": {
+      "language_code": "ru",
+      "name": "������� ������",
+      "master": 2
+    }
+  },
+  {
+    "model": "apps.categorytranslation",
+    "pk": 5,
+    "fields": {
+      "language_code": "uz",
+      "name": "Aksesuarlar",
+      "master": 3
+    }
+  },
+  {
+    "model": "apps.categorytranslation",
+    "pk": 6,
+    "fields": {
+      "language_code": "ru",
+      "name": "����������",
+      "master": 3
+    }
+  },
+  {
+    "model": "apps.categorytranslation",
+    "pk": 7,
+    "fields": {
+      "language_code": "uz",
+      "name": "Bolalar kiyimi",
+      "master": 4
+    }
+  },
+  {
+    "model": "apps.categorytranslation",
+    "pk": 8,
+    "fields": {
+      "language_code": "ru",
+      "name": "������� ������",
+      "master": 4
+    }
+  }
+]

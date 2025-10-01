@@ -1,0 +1,225 @@
+{% extends 'base/main.html' %}
+{% load i18n %}
+{% block main %}
+    <style>
+        .profile-back-btn {
+            display: flex;
+            align-items: center;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 8px 15px;
+            margin: 10px 15px 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+            width: calc(100% - 30px);
+        }
+
+        .profile-back-btn:hover {
+            background: #e9ecef;
+        }
+
+        .profile-back-btn i {
+            margin-right: 8px;
+        }
+
+        /* Existing sidebar styles (add these if not already present) */
+        .profile-sidebar {
+            width: 250px;
+            background: #2c3e50;
+            color: white;
+            position: relative;
+        }
+
+        .profile-menu {
+            padding: 0 15px;
+        }
+
+        @media (max-width: 768px) {
+            .profile-container {
+                flex-direction: column;
+            }
+
+            .profile-sidebar {
+                width: 100%;
+            }
+
+            .profile-back-btn {
+                margin: 10px auto;
+                width: 90%;
+            }
+        }
+
+        .profile-page {
+            padding: 30px 0;
+            background-color: #f5f5f5;
+            min-height: calc(100vh - 120px); /* Adjust based on header/footer height */
+        }
+
+        .profile-container {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .profile-sidebar {
+            width: 300px;
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+        }
+
+
+        .profile-avatar img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #fff;
+        }
+
+        /* Agar sidebar bo'sh qolsa, unga mos stil qo'shishingiz mumkin */
+        .profile-sidebar {
+            padding-top: 30px; /* Menu yuqoridan joy tashlash uchun */
+        }
+
+        .profile-menu ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .profile-menu li {
+            margin-bottom: 5px;
+        }
+
+        .profile-menu a {
+            display: block;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .profile-menu a:hover, .profile-menu li.active a {
+            background: #34495e;
+        }
+
+        .profile-menu i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .profile-content {
+            flex: 1;
+            padding: 30px;
+        }
+
+        .profile-section {
+            display: none;
+        }
+
+        .profile-section.active {
+            display: block;
+        }
+
+        profile-form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .form-row {
+            margin-bottom: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .save-btn {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            width: 100%;
+            transition: background 0.3s;
+        }
+
+        .save-btn:hover {
+            background: #2ecc71;
+        }
+
+        @media (max-width: 768px) {
+            .profile-form {
+                padding: 0 15px;
+            }
+        }
+
+    </style>
+    <main class="profile-page">
+        <div class="profile-container">
+            <div class="profile-sidebar">
+                <a href="{% url 'main' %}" class="invisible-link">
+                    <button class="profile-back-btn">
+                        <i class="fas fa-arrow-left"></i>{% trans "Orqaga" %}
+                    </button>
+                </a>
+                <nav class="profile-menu">
+                    <ul class="profile-menu-list">
+                        <li class="{% if request.path == '/profile/' %}active{% endif %}">
+                            <a href="{% url 'profile' %}"><i class="fas fa-user"></i>{% trans "Shaxsiy ma'lumotlar" %}</a>
+                        </li>
+                        <li class="{% if request.path == '/profile/orders/' %}active{% endif %}">
+                            <a href="{% url 'order-list' %}"><i class="fas fa-shopping-bag"></i>{% trans "Buyurtmalar tarixi" %}</a>
+                        </li>
+                        <li class="{% if request.path == '/profile/addresses/' %}active{% endif %}">
+                            <a href="{% url 'address-list' %}"><i class="fas fa-map-marker-alt"></i>{% trans "Manzillarim" %}</a>
+                        </li>
+                        <li class="{% if request.path == '/profile/wishlist/' %}active{% endif %}">
+                            <a href="{% url 'wishlist-list' %}"><i class="fas fa-heart"></i>{% trans "Sevimlilar" %}</a>
+                        </li>
+                        <li class="{% if request.path == '/profile/notifications/' %}active{% endif %}">
+                            <a href="{% url 'profile-notifications' %}"> <i class="fas fa-bell"></i>{% trans "Bildirishmalar" %}</a>
+                        </li>
+
+                        <li class="{% if request.path == '/profile/about/' %}active{% endif %}">
+                            <a href="{% url 'profile-about' %}"><i class="fas fa-exclamation-circle"></i>{% trans "Biz haqimizda" %}</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i>{% trans "Chiqish" %}</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            {% block profile %}
+
+            {% endblock %}
+        </div>
+    </main>
+{% endblock %}

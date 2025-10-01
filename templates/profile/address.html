@@ -1,0 +1,417 @@
+{% extends 'profile/main.html' %}
+{% load i18n %}
+
+{% block profile %}
+    <style>
+        .addresses-page {
+            padding: 20px;
+        }
+
+        .addresses-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .addresses-header h2 {
+            font-size: 24px;
+            color: #333;
+        }
+
+        .add-address-btn {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .add-address-btn:hover {
+            background: #2ecc71;
+        }
+
+        .addresses-list {
+            display: grid;
+            gap: 20px;
+        }
+
+        .address-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            background: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .address-content {
+            flex: 1;
+        }
+
+        .address-title {
+            margin: 0 0 10px 0;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .address-text {
+            margin: 0 0 15px 0;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .address-details {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .address-details span {
+            color: #666;
+        }
+
+        .address-note {
+            margin: 15px 0 0 0;
+            color: #666;
+            font-style: italic;
+        }
+
+        .address-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-left: 20px;
+        }
+
+        .edit-btn, .delete-btn {
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            white-space: nowrap;
+        }
+
+        .edit-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+        }
+
+        .edit-btn:hover {
+            background: #2980b9;
+        }
+
+        .delete-btn {
+            background: #f8f9fa;
+            color: #e74c3c;
+            border: 1px solid #ddd;
+        }
+
+        .delete-btn:hover {
+            background: #f1f1f1;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 5% auto;
+            padding: 25px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 600px;
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #999;
+        }
+
+        .close-btn:hover {
+            color: #333;
+        }
+
+        .address-form {
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .form-group textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        .save-btn {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .save-btn:hover {
+            background: #2ecc71;
+        }
+
+        @media (max-width: 768px) {
+            .address-card {
+                flex-direction: column;
+            }
+
+            .address-actions {
+                margin-left: 0;
+                margin-top: 15px;
+                flex-direction: row;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+    </style>
+
+    <div class="addresses-page">
+        <div class="addresses-header">
+            <h2>{% trans "Manzillar" %}</h2>
+            <button class="add-address-btn" id="addAddressBtn">
+                <i class="fas fa-plus"></i>{% trans "Yangi manzil qo'shish" %}
+            </button>
+        </div>
+
+        <div class="addresses-list">
+            {% for address in addresses %}
+                <div class="address-card" data-address-id="{{ address.id }}">
+                    <div class="address-content">
+                        <h3 class="address-title">{% trans "Asosiy manzil" %}</h3>
+                        <p class="address-text">{{ address.address }}</p>
+                        <div class="address-details">
+                            <span><strong>Kirish:</strong>{{ address.entrance_hall }}</span>
+                            <span><strong>Qavat:</strong>{{ address.floor }}</span>
+                            <span><strong>Xona:</strong>{{ address.room }}</span>
+                        </div>
+                        <p class="address-note"><strong>{% trans "Qo'shimcha:" %}</strong>{{ address.description }}</p>
+                    </div>
+                    <div class="address-actions">
+                        <button class="edit-btn"><i class="fas fa-edit"></i>{% trans "Tahrirlash" %}</button>
+                        <form action="{% url 'address-delete' address.pk %}" method="post" class="delete-address-form">
+                            {% csrf_token %}
+                            <button type="submit" class="delete-btn"><i class="fas fa-trash"></i>{% trans  "O'chirish" %}</button>
+                        </form>
+
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- Add Address Modal -->
+        <div class="modal" id="addressModal">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <h3>{% trans "Yangi manzil qo'shish" %}</h3>
+                <form action="{% url 'address-save' %}" method="post" class="address-form" id="addAddressForm">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="address-text">{% trans  "To'liq manzil" %}</label>
+                        <textarea id="address-text" name="address" rows="3"
+                                  placeholder="Shahar/tuman, ko'cha, uy raqami" required></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="entrance">{% trans "Kirish" %}</label>
+                            <input type="text" id="entrance" name="entrance_hall" placeholder="Kirish raqami">
+                        </div>
+                        <div class="form-group">
+                            <label for="floor">{% trans "Qavat" %}</label>
+                            <input type="text" id="floor" name="floor" placeholder="Qavat raqami">
+                        </div>
+                        <div class="form-group">
+                            <label for="apartment">{% trans "Xona" %}</label>
+                            <input type="text" id="apartment" name="room" placeholder="Xona raqami">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="address-note">{% trans "Qo'shimcha izoh" %}</label>
+                        <textarea id="address-note" name="description" rows="2"
+                                  placeholder="Yo'naltirish uchun qo'shimcha ma'lumot"></textarea>
+                    </div>
+                    <input type="hidden" name="user" value="{{ request.user.id }}">
+                    <button type="submit" class="save-btn">{% trans "Saqlash" %}</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Edit Address Modal -->
+        <div class="modal" id="editAddressModal">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <h3>{% trans "Manzilni tahrirlash "%}</h3>
+                <form action="{% url 'address-update' %}" method="post" class="address-form" id="editAddressForm">
+                    {% csrf_token %}
+                    <input type="hidden" id="edit-address-id" name="id">
+                    <div class="form-group">
+                        <label for="edit-address-title">Manzil nomi</label>
+                        <input type="text" id="edit-address-title" name="title" placeholder="Masalan: Uy, Ish joyi"
+                               required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-address-text">{% trans  "To'liq manzil" %}</label>
+                        <textarea id="edit-address-text" name="address" rows="3"
+                                  placeholder="Shahar/tuman, ko'cha, uy raqami" required></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="edit-entrance">{% trans "Kirish" %}</label>
+                            <input type="text" id="edit-entrance" name="entrance_hall" placeholder="Kirish raqami">
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-floor">{% trans "Qavat" %}</label>
+                            <input type="text" id="edit-floor" name="floor" placeholder="Qavat raqami">
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-apartment">{% trans "Xona" %}</label>
+                            <input type="text" id="edit-apartment" name="room" placeholder="Xona raqami">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-address-note">{% trans "Qo'shimcha izoh" %}</label>
+                        <textarea id="edit-address-note" name="description" rows="2"
+                                  placeholder="Yo'naltirish uchun qo'shimcha ma'lumot"></textarea>
+                    </div>
+                    <button type="submit" class="save-btn">{% trans "O'zgarishlarni saqlash" %}</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const addModal = document.getElementById('addressModal');
+            const addBtn = document.getElementById('addAddressBtn');
+            const addForm = document.getElementById('addAddressForm');
+
+            const editModal = document.getElementById('editAddressModal');
+            const editForm = document.getElementById('editAddressForm');
+            const editButtons = document.querySelectorAll('.edit-btn');
+
+            const closeButtons = document.querySelectorAll('.close-btn');
+
+            addBtn.addEventListener('click', function () {
+                addModal.style.display = 'block';
+            });
+
+            editButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const addressCard = this.closest('.address-card');
+                    const addressId = addressCard.dataset.addressId;
+
+                    document.getElementById('edit-address-id').value = addressId;
+                    document.getElementById('edit-address-title').value = addressCard.querySelector('.address-title').textContent;
+                    document.getElementById('edit-address-text').value = addressCard.querySelector('.address-text').textContent;
+
+                    const details = addressCard.querySelectorAll('.address-details span');
+                    if (details.length === 3) {
+                        document.getElementById('edit-entrance').value = details[0].textContent.replace('Kirish:', '').trim();
+                        document.getElementById('edit-floor').value = details[1].textContent.replace('Qavat:', '').trim();
+                        document.getElementById('edit-apartment').value = details[2].textContent.replace('Xona:', '').trim();
+                    }
+
+                    const noteElement = addressCard.querySelector('.address-note');
+                    if (noteElement) {
+                        document.getElementById('edit-address-note').value = noteElement.textContent.replace("Qo'shimcha:", '').trim();
+                    }
+
+                    editModal.style.display = 'block';
+                });
+            });
+
+            closeButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const modal = this.closest('.modal');
+                    modal.style.display = 'none';
+                });
+            });
+
+            window.addEventListener('click', function (event) {
+                if (event.target.classList.contains('modal')) {
+                    event.target.style.display = 'none';
+                }
+            });
+
+            document.querySelectorAll('.delete-address-form').forEach(form => {
+                form.addEventListener('submit', function (e) {
+                    const confirmed = confirm("Haqiqatan ham bu manzilni o'chirmoqchimisiz?");
+                    if (!confirmed) {
+                        e.preventDefault();  // Bekor qilinsa form yuborilmaydi
+                    }
+                });
+            });
+
+
+            addForm.addEventListener('submit', function () {
+                addModal.style.display = 'none';
+            });
+
+            editForm.addEventListener('submit', function () {
+                editModal.style.display = 'none';
+            });
+        });
+    </script>
+{% endblock %}

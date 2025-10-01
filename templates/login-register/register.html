@@ -1,0 +1,343 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kirish | Ro'yxatdan o'tish - ClickBrandShop</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            --primary: #4a6de5;
+            --secondary: #ff6b6b;
+            --dark: #2c3e50;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --success: #28a745;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+        }
+
+        .auth-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .auth-box {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            padding: 30px;
+        }
+
+        .auth-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .auth-header h2 {
+            color: var(--primary);
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .auth-header p {
+            color: var(--gray);
+            font-size: 14px;
+        }
+
+        .auth-form {
+            display: none;
+        }
+
+        .auth-form.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        .input-group .prefix {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px 12px 40px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: border 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #3a5bd0;
+        }
+
+        .auth-footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: var(--gray);
+        }
+
+        .auth-footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .auth-box {
+                padding: 20px;
+            }
+        }
+
+        .auth-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .auth-box {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            padding: 30px;
+        }
+
+        .auth-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .auth-header h2 {
+            color: #4a6de5;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .phone-input-group {
+            display: flex;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .country-code {
+            padding: 12px 15px;
+            background: #f5f5f5;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .form-control {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .error-message {
+            color: #ff6b6b;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background: #4a6de5;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #3a5bd0;
+        }
+
+        .terms-agreement {
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+            margin-top: 20px;
+            line-height: 1.5;
+        }
+
+        .terms-agreement a {
+            color: #4a6de5;
+            text-decoration: none;
+        }
+
+        .terms-agreement a:hover {
+            text-decoration: underline;
+        }
+
+        .form-control {
+            font-family: monospace; /* Raqamlar teng joylashishi uchun */
+            letter-spacing: 1px; /* Belgilar orasini ochish */
+        }
+    </style>
+</head>
+<body>
+<div class="auth-container">
+    <div class="auth-box">
+        <div class="auth-header">
+            <h2> {% trans "ClickBrandShop ga xush kelibsiz" %}</h2>
+        </div>
+
+        <div class="auth-form active" id="login-form">
+            <form action="{% url 'register' %}" method="post" id="loginForm">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label> {% trans "Telefon raqamingizni kiriting" %}</label>
+                    <div class="phone-input-group">
+                        <div class="country-code">+998</div>
+                        <input type="tel" name="phone_number" id="loginPhone" class="form-control"
+                               placeholder="__ ___ __ __">
+                    </div>
+                    <div class="error-message"> {% trans "Yaroqsiz telefon raqam" %}"</div>
+                </div>
+                <button type="submit" class="btn">{% trans "Davom etish" %}</button>
+                <div class="terms-agreement">
+                    "Davom etish" tugmasini bosish orqali siz bizning
+                    <a href="#"> {% trans "Foydalanish shartlari" %}</a> va
+                    <a href="#">{% trans "Maxfiylik siyosatiga rozilik bildirasiz "%}</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const phoneInput = document.getElementById('loginPhone');
+        const errorMessage = document.querySelector('.error-message');
+        const loginForm = document.getElementById('loginForm');
+
+        function validatePhoneNumber(value) {
+            const digits = value.replace(/\D/g, '');
+            return digits.length === 9; // +998 dan keyin 9 ta raqam
+        }
+
+        phoneInput.addEventListener('input', function () {
+            // Faqat raqamlarni qoldiramiz
+            let value = this.value.replace(/\D/g, '');
+
+            // Formatlash (__ ___ __ __)
+            let formattedValue = '';
+            if (value.length > 0) {
+                formattedValue = value.substring(0, 2);
+            } else {
+                formattedValue = '__';
+            }
+
+            if (value.length > 2) {
+                formattedValue += ' ' + value.substring(2, 5);
+            } else if (value.length > 0) {
+                formattedValue += ' ___';
+            }
+
+            if (value.length > 5) {
+                formattedValue += ' ' + value.substring(5, 7);
+            } else if (value.length > 2) {
+                formattedValue += ' __';
+            }
+
+            if (value.length > 7) {
+                formattedValue += ' ' + value.substring(7, 9);
+            } else if (value.length > 5) {
+                formattedValue += ' __';
+            }
+
+            this.value = formattedValue;
+
+            // Har bir kiritishda validatsiya
+            errorMessage.style.display = validatePhoneNumber(value) ? 'none' : 'block';
+        });
+
+        loginForm.addEventListener('submit', function (e) {
+            const phone = phoneInput.value.replace(/\D/g, '');
+
+            if (!validatePhoneNumber(phone)) {
+                e.preventDefault();
+                errorMessage.style.display = 'block';
+                phoneInput.focus();
+            }
+        });
+    });
+</script>
+</body>
+</html>

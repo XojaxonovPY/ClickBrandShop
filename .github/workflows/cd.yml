@@ -1,0 +1,17 @@
+name: Local CD with Docker Compose
+
+on:
+  workflow_dispatch:  # qo'lda ishga tushirish uchun (manual trigger)
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest  # bu GitHub serverida ishlaydi, lekin WSL muhitiga mos
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build and Run containers (Docker Compose)
+        run: |
+          docker compose down
+          docker compose build --no-cache
+          docker compose up -d

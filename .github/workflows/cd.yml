@@ -1,17 +1,25 @@
-name: Local CD with Docker Compose
+name: CD Deployment
 
 on:
-  workflow_dispatch:  # qo'lda ishga tushirish uchun (manual trigger)
+  push:
+    branches:
+      - main
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest  # bu GitHub serverida ishlaydi, lekin WSL muhitiga mos
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Build and Run containers (Docker Compose)
-        run: |
-          docker compose down
-          docker compose build --no-cache
-          docker compose up -d
+      - name: Deploy to local server
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          script: |
+            cd /var/www/your_project_folder
+            git pull origin main
+            docker compose down
+            docker compose up -d --build
